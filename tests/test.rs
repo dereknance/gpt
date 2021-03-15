@@ -1,7 +1,3 @@
-use simplelog;
-
-use uuid;
-
 use gpt::disk;
 use gpt::header::{read_header, write_header, Header};
 use gpt::partition::{read_partitions, Partition};

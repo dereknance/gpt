@@ -1,5 +1,3 @@
-use gpt;
-
 use gpt::disk;
 use std::collections::BTreeMap;
 use std::convert::TryFrom;

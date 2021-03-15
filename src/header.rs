@@ -455,7 +455,6 @@ pub fn write_header(
 #[test]
 // test compute new with fdisk'd image, without giving original header
 fn test_compute_new_fdisk_no_header() {
-    use tempfile;
     let lb_size = disk::DEFAULT_SECTOR_SIZE;
     let diskpath = Path::new("tests/fixtures/test.img");
     let h = read_header(diskpath, lb_size).unwrap();
@@ -606,7 +605,6 @@ fn test_compute_new_fdisk_pass_header() {
 #[test]
 // test compute new with fdisk'd image, without giving original header
 fn test_compute_new_gpt_no_header() {
-    use tempfile;
     let lb_size = disk::DEFAULT_SECTOR_SIZE;
     let diskpath = Path::new("tests/fixtures/gpt-linux-disk-01.img");
     let h = read_header(diskpath, lb_size).unwrap();
