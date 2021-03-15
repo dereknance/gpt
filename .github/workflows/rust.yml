@@ -1,9 +1,9 @@
 # Workflow recipe from https://github.com/actions-rs/meta/blob/master/recipes/msrv.md
 on: 
   push:
-    branches: [master]
+    branches: '**'
   pull_request:
-    branches: [master]
+    branches: '**'
 
 jobs:
   check:
@@ -66,4 +66,4 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: clippy
-          args: -- -D warnings
+          args: -- -D all
