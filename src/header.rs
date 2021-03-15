@@ -484,15 +484,18 @@ fn test_compute_new_fdisk_no_header() {
     let new_primary =
         Header::compute_new(true, &partitions, uuid::Uuid::new_v4(), bak, &None, lb_size).unwrap();
     println!("new primary header {:#?}", new_primary);
-    let new_backup =
-        Header::compute_new(false, &partitions, uuid::Uuid::new_v4(), bak, &None, lb_size).unwrap();
+    let new_backup = Header::compute_new(
+        false,
+        &partitions,
+        uuid::Uuid::new_v4(),
+        bak,
+        &None,
+        lb_size,
+    )
+    .unwrap();
     println!("new backup header {:#?}", new_backup);
-    new_primary
-        .write_primary(&mut tempdisk, lb_size)
-        .unwrap();
-    new_backup
-        .write_backup(&mut tempdisk, lb_size)
-        .unwrap();
+    new_primary.write_primary(&mut tempdisk, lb_size).unwrap();
+    new_backup.write_backup(&mut tempdisk, lb_size).unwrap();
     let mbr = crate::mbr::ProtectiveMBR::new();
     mbr.overwrite_lba0(&mut tempdisk).unwrap();
     assert_eq!(h.signature, new_primary.signature);
@@ -629,15 +632,18 @@ fn test_compute_new_gpt_no_header() {
     let new_primary =
         Header::compute_new(true, &partitions, uuid::Uuid::new_v4(), bak, &None, lb_size).unwrap();
     println!("new primary header {:#?}", new_primary);
-    let new_backup =
-        Header::compute_new(false, &partitions, uuid::Uuid::new_v4(), bak, &None, lb_size).unwrap();
+    let new_backup = Header::compute_new(
+        false,
+        &partitions,
+        uuid::Uuid::new_v4(),
+        bak,
+        &None,
+        lb_size,
+    )
+    .unwrap();
     println!("new backup header {:#?}", new_backup);
-    new_primary
-        .write_primary(&mut tempdisk, lb_size)
-        .unwrap();
-    new_backup
-        .write_backup(&mut tempdisk, lb_size)
-        .unwrap();
+    new_primary.write_primary(&mut tempdisk, lb_size).unwrap();
+    new_backup.write_backup(&mut tempdisk, lb_size).unwrap();
     let mbr = crate::mbr::ProtectiveMBR::new();
     mbr.overwrite_lba0(&mut tempdisk).unwrap();
     assert_eq!(h.signature, new_primary.signature);
