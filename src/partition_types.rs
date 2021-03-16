@@ -118,6 +118,15 @@ fn test_partition_fromstr_unknown_guid() {
     assert_eq!(t.os, OperatingSystem::Unknown);
 }
 
+#[test]
+fn test_partition_fromstr_bad_guid() {
+    // this GUID is missing a few bits off the end.
+    let p = "41d0e340-57e3-954e-8c1e-17ecac4";
+    let t = Type::from_str(p);
+    println!("result: {:?}", t);
+    assert!(t.is_err());
+}
+
 impl Type<'_> {
     /// Lookup a partition type by uuid
     pub fn from_uuid(u: &uuid::Uuid) -> Result<Self, uuid::Error> {
